@@ -1,6 +1,9 @@
 import React, { Fragment } from "react";
 import ReactDOM from "react-dom/client";
 import "@/index.less";
+
+import { createElement } from "./jsxHandle";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const text = "一些数据";
@@ -15,8 +18,8 @@ root.render(
 
 // * 代理服务测试
 
-// fetch("/jian/subscriptions/recommended_collections")
-//   .then((res) => res.json())
-//   .then((value) => {
-//     console.log("value..", value);
-//   });
+fetch("/jian/subscriptions/recommended_collections")
+  .then((res) => res.json())
+  .then((value) => {
+    console.log("value..", value);
+  });
