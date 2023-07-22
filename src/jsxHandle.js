@@ -39,7 +39,50 @@ export function createElement(element, props,...children) {
 //  简化版  Simplyfiled
 export function render(virtualDOM, container) {
     let {type, props} = virtualDOM
+    if(typeof type === 'string') {
+        // 存储的是标签名 : 动态创建标签
+        let ele = document.createElement(type);
+        // 将props中的属性 给到 此标签
+        each(props, (value,key)=>{
+            // 处理 className
+            if(key === 'className') {
+                ele.className = value;
+                return;
+            }
+            // style 的处理  value 是 style的样式对象
+            if(key === 'style') {
+                each(value, (val,attr)=>{
+                    ele.style[attr] = val;
+                })
+                return;
+            }
+            // 子节点的处理  value 存储的是children属性值
+            if(key === 'children') {
+                let children = value;
+                if(children.length === 1) {
+                    children = [children];
+                }
+                // 对所有子节点进行处理
+                children.forEach(child =>{
+                    // 如果子节点 只是文字：直接插入
+                    if(typeof child === 'string') {
+                        ele.appendChild(  document.createTextNode(child));
+                        return;
+                    } 
+
+                    // 如果子节点又是一个virtualDOM, 递归 render()
+                    render(child,ele);
+                })
+                return;
+            }
+            // 正常情况下  给ele增加属性 key-value
+           ele.setAttribute(key,value);
+        })
+        // 将新增的标签  增加到指定容器中
+        container.appendChild(ele);
+    }
 }
+
 
 // hleper function :  iterate through virtualDOM.props
 //  不使用 for..in 性能问题：for..in会遍历 所有属性 私有的 共有的。 
