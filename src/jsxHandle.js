@@ -59,7 +59,7 @@ export function render(virtualDOM, container) {
             // 子节点的处理  value 存储的是children属性值
             if(key === 'children') {
                 let children = value;
-                if(children.length === 1) {
+                if(Array.isArray(children)) {
                     children = [children];
                 }
                 // 对所有子节点进行处理
