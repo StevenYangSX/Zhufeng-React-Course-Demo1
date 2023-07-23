@@ -2,8 +2,7 @@ import React, { Fragment } from "react";
 import ReactDOM from "react-dom/client";
 import "@/index.less";
 
-import { createElement } from "./jsxHandle";
-
+import DemoOne from "./views/DemoOne";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const text = "一些数据";
@@ -13,13 +12,30 @@ root.render(
     {new Array(5).fill(0).map((ele, index) => {
       return <button key={index}>按钮{index}</button>;
     })}
+
+    <br />
+    <br />
+    <DemoOne title="Title 1" data={[1, 2, 3, 4]}>
+      <span slot="footer">页脚</span>
+      <span>hahahhahahah</span>
+      <span slot="header">页眉</span>
+    </DemoOne>
+
+    <DemoOne title="Title 2" data={[1, 2, 3, 4]}>
+      <span slot="header">只有页眉</span>
+      <span>hahahhahahah</span>
+    </DemoOne>
+
+    <DemoOne title="title 3">
+      <span>hahahhahahah</span>
+    </DemoOne>
   </Fragment>
 );
 
-// * 代理服务测试
+//* 代理服务测试
 
-fetch("/jian/subscriptions/recommended_collections")
-  .then((res) => res.json())
-  .then((value) => {
-    console.log("value..", value);
-  });
+// fetch("/jian/subscriptions/recommended_collections")
+//   .then((res) => res.json())
+//   .then((value) => {
+//     console.log("value..", value);
+//   });
