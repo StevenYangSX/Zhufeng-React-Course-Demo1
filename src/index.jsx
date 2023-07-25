@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import "@/index.less";
 
 import DemoOne from "./views/DemoOne";
+import Dialog from "./components/Dialog";
+import Vote from "./views/Vote";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const text = "一些数据";
@@ -29,6 +31,20 @@ root.render(
     <DemoOne title="title 3">
       <span>hahahhahahah</span>
     </DemoOne>
+    <br />
+    <br />
+    <br />
+    <h2 style={{ backgroundColor: "yellowgreen" }}>A Dialog Component</h2>
+
+    <Dialog content="我是内容是内容我是内容是内容我是内容是内容"></Dialog>
+    <Dialog title="友情提示" content="In 1758, the Swedish botanist and zoologist">
+      <button>确定</button>
+      <button>取消</button>
+    </Dialog>
+    <br />
+    <br />
+    <br />
+    <Vote title="React Vs. Vue" />
   </Fragment>
 );
 

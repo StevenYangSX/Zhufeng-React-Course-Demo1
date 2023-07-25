@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React from "react";
 
 const DemoOne = function DemoOne(props) {
-  let { title, data, children } = props;
+  let { title, children } = props;
 
   // 根基 children的不同 放置的位置不同
   // 可以基于 React.children对象提供的方法 对props.children做处理
