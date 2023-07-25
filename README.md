@@ -176,7 +176,45 @@
    2. 比如：需要有两个Button 控制显示/隐藏
    3. 可以 通过传一个prop实现，也可以**预留按钮区域，但是内容不写，调用的时候，把结构传递过去**
 
+4. 一个练习：封装一个Dialog组件，上方显示title，中间显示提示内容，下面两个按钮：确定和取消 文字样式也不确定。
 
+### 4. 类组件 Class Component
 
- 
+1. 类组件必须继承React.Component这个类
+
+   1. 必须给当前类设置一个render方法，放在原型上。在render方法中，返回需要渲染的视图
+
+   2. 基于extends的继承 ```React.Component.call(this)``` 
+
+      ```javascript
+      function Component(props, context, updater) {
+          this.props = props;
+          this.context = context;
+          this.refs = enptyObject;
+          this.updater = updater || ReactNodeUpdateQueue;
+      }
+      ```
+
+      
+
+   3. 再基于原型继承 ```Parent.prototype.__proto__ === React.Component.prototype``` 
+
+   4. 如果自己设置了constructor, 则必须使用super
+
+      ```javascript
+      class Parent extneds React.Component {
+          constuctor(n,m) {
+              super();  // 等价于    React.Component.call(this);
+              //......
+          }
+      ```
+
+      
+
+   5. **render函数渲染底层**
+
+      1. 当 render() 方法接收的VirtualDOM Object中的type: class Vote 的时候，把这个class的构造函数基于new执行，也会把解析出来的props传递进去
+      2. 每调用一次类组件，都会创建一个单独的实例。
+
+      
 
