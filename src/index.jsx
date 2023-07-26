@@ -5,6 +5,7 @@ import DemoOne from "./views/DemoOne";
 import Dialog from "./components/Dialog";
 import Vote from "./views/Vote";
 import VoteClass from "./views/VoteClass";
+import RefDemo from "./views/RefDemo";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -49,6 +50,10 @@ root.render(
     <br />
     <br />
     <VoteClass title="React Class Component" />
+    <br />
+    <br />
+    <br />
+    <RefDemo />
   </Fragment>
 );
 
