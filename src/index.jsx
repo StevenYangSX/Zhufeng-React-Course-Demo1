@@ -1,10 +1,11 @@
 import React, { Fragment } from "react";
 import ReactDOM from "react-dom/client";
 import "@/index.less";
-
 import DemoOne from "./views/DemoOne";
 import Dialog from "./components/Dialog";
 import Vote from "./views/Vote";
+import VoteClass from "./views/VoteClass";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const text = "一些数据";
@@ -44,7 +45,10 @@ root.render(
     <br />
     <br />
     <br />
-    <Vote title="React Vs. Vue" />
+    <Vote title="React Vs. Vue Functional Component" />
+    <br />
+    <br />
+    <VoteClass title="React Class Component" />
   </Fragment>
 );
 
