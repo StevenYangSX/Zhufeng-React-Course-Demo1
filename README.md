@@ -215,6 +215,60 @@
 
       1. 当 render() 方法接收的VirtualDOM Object中的type: class Vote 的时候，把这个class的构造函数基于new执行，也会把解析出来的props传递进去
       2. 每调用一次类组件，都会创建一个单独的实例。
+      3. **初始化状态：state**  state的修改 ----->  视图更新
+         1. state需要手动初始化 默认为null.
+         2. 直接给state赋值并不会触发视图更新。要基于React.Component.prototype提供的方法操作：
+            1. ```this.setState(partialState)```
+            2. ```this.forceUPdate()``` 强制更新
 
-      
+      4. 触发生命周期函数 ：在程序运行至某个阶段，让开发者在这个阶段做一些自定义的事情　componentWillUnmount
+
+2. 类组件的生命周期
+
+   1. ```shouldComponentUpdate```
+      1. 返回 true/false ，是否允许更新
+
+   2. ```componentWillUpdate```
+      1. 不安全的
+      2. 在这个阶段  状态还没有被修改
+
+   3. 触发render() ： 组件更新 按照最新的状态/属性 把返回的JSX编译为virtualDOM
+   4. ```componentDidUPdate``` 组件更新完毕、
+
+
+### 5.有关Ref操作的解读
+
+1. 受控组件：基于修改数据、状态， 让视图更新，达到需要的效果
+
+2. 非受控组件：基于ref，获取DOM元素，实现需求
+
+3. ```javascript
+   //基于ref获取DOM的语法
+   //1.  this.refs.titleBox 获取ref
+   <h2 className="title" ref="titleBox">
+       温馨提示
+   </h2>
+   
+   //2. ref是个方法
+   <h2 className="title" ref={x=>this.box2 = x}>
+       友情提示
+   </h2>
+   ```
+
+### 6.有关Ref操作的解读
+
+1. ```this.setState([partialState],[callback])```
+   1. 支持部分状态修改
+   2. **[callback]** : **在状态更改，视图更新完成后** 触发执行
+      1. 发生在componentDidUpdate周期后，使用这个回调，可以在指定某个状态修改后处理一些逻辑
+      2. 即使我们基于```shouldComponentUpdate```阻止了状态/视图的更新，这个callback还是一定会执行！
+2. 在React18中，setState在任何地方执行，都是 **异步** 操作！
+   1. React 18 有一套更新队列的机制
+   2. 基于异步，实现状态的批处理
+   3. 减少视图更新的次数，降低渲染消耗的性能!
+   4. 让更新的逻辑和流程更清晰稳健
+
+3. ```flushSync()```方法
+   1. 来自 ```react-dom```, 刷新updater, 触发状态和视图更新
+4. ```setState((prevState)=>{})``` 传递一个方法到 setState
 

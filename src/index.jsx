@@ -6,6 +6,7 @@ import Dialog from "./components/Dialog";
 import Vote from "./views/Vote";
 import VoteClass from "./views/VoteClass";
 import RefDemo from "./views/RefDemo";
+import SetState from "./views/SetState";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -53,7 +54,13 @@ root.render(
     <br />
     <br />
     <br />
+
+    {/* 学习 ref 组件 */}
     <RefDemo />
+
+    <br />
+    <h3>More Details About setState</h3>
+    <SetState />
   </Fragment>
 );
 
