@@ -7,6 +7,11 @@ import Vote from "./views/Vote";
 import VoteClass from "./views/VoteClass";
 import RefDemo from "./views/RefDemo";
 import SetState from "./views/SetState";
+import ReactEvent from "./views/ReactEvent/ReactEvent";
+import UseEffectComponent from "./views/ReactHooks/UseEffectComponent";
+import UseRefComponent from "./views/ReactHooks/UseRefComponent";
+import UseMemoComponent from "./views/ReactHooks/UseMemoComponent";
+import UseCallbackComponent from "./views/ReactHooks/UseCallbackComponent";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -61,6 +66,21 @@ root.render(
     <br />
     <h3>More Details About setState</h3>
     <SetState />
+    <br />
+    <br />
+    <h2>React Synthetic Event 合成事件</h2>
+    <ReactEvent />
+    <br />
+    <br />
+    <h2>React Hooks</h2>
+    <h3>UseEffect Hook</h3>
+    <UseEffectComponent />
+    <h3>UseRef Hook</h3>
+    <UseRefComponent />
+    <h3>UseMemo Hook</h3>
+    <UseMemoComponent />
+    <h3>UseCallback Hook</h3>
+    <UseCallbackComponent />
   </Fragment>
 );
 

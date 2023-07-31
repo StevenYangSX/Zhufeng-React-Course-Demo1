@@ -272,3 +272,58 @@
    1. 来自 ```react-dom```, 刷新updater, 触发状态和视图更新
 4. ```setState((prevState)=>{})``` 传递一个方法到 setState
 
+### 7.React中的合成事件  Synthetic Event
+
+1. Class component 中 事件绑定一个 "普通方法"， 会丢失 this。 需要bind
+
+   ```this.someEventHandler.bind(this)```
+
+2. 使用 ES6 Arrow Function
+
+   ```<Button onClick={()=>{......}}>Click</Button>```
+
+3. JS中事件绑定的一个基础知识： ```addEventLisener(para1,function,true/false)```
+
+   1. **事件传播机制** : 从最外层 --> 最内层 逐一查找 （捕获阶段）最内层 ---> 最外层 （冒泡阶段） 
+
+
+4. 事件委托
+
+   ```javascript
+   const body = document.body;
+   body.addEventListener("click",function(ev){
+       // ev.target  事件源  点的是谁  谁就是事件源
+       let target = ev.target;
+       if(target.id === 'root') {
+           //do something
+           return;
+       }
+        if(target.id === 'inner') {
+           //do something
+           return;
+       }
+        if(target.id === 'outer') {
+           //do something
+           return;
+       }
+       // do something if id is not root, inner ,outer
+   })
+   ```
+
+### 8. Hook 组件 （重点！！！！Functional Component With State）
+
+1. **核心重点：函数组件！ 每次视图渲染、更新，都需要执行这个函数！**
+2. **```UseEffect(()=>{})```**  ---->  生命周期函数  在函数组件中的应用
+   1. ```useEffect()```会在第一次渲染完毕以后，执行callback。 等价于 ``` componentDidMound```
+   2. ```useEffect()``` 在组件每一次更新完成后，会执行callback。等价于 ```componentDidUpdate``` 
+3. ```useEffect(()=>{},[])``` 如果这里传入一个空数组
+   1. 会在第一次渲染完毕后执行！！
+   2. 每一次视图更新后，callback不会再执行 等价于  ```componentDidMount``` 
+4. ```useEffect(()=>{},[dep1,dep2,....])``` 如果依赖数组传了值
+   1. 会在第一次渲染完毕后执行！
+   2. 当依赖的状态发生改变的时候，也会执行callback
+5. ```useLayoutEffect(()=>{})```的应用
+6. ```useRef()```
+7. ```useMemo()```构建计算缓存
+8. ```useCallback```缓存函数应用
+9. 自定义hook
