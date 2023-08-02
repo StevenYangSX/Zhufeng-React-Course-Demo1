@@ -327,3 +327,8 @@
 7. ```useMemo()```构建计算缓存
 8. ```useCallback```缓存函数应用
 9. 自定义hook
+
+### 9. React 父子组件信息传递
+
+1. 通过props
+2. 通过context

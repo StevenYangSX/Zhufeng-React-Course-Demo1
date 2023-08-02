@@ -12,6 +12,8 @@ import UseEffectComponent from "./views/ReactHooks/UseEffectComponent";
 import UseRefComponent from "./views/ReactHooks/UseRefComponent";
 import UseMemoComponent from "./views/ReactHooks/UseMemoComponent";
 import UseCallbackComponent from "./views/ReactHooks/UseCallbackComponent";
+import VoteContainer from "./demos/passingDataByProps/VoteContainer";
+import VoteContextContainer from "./demos/passingDataByContext/VoteContextContainer";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -81,6 +83,12 @@ root.render(
     <UseMemoComponent />
     <h3>UseCallback Hook</h3>
     <UseCallbackComponent />
+    <br />
+    <br />
+    <div>========================= 使用props传递数据=====================</div>
+    <VoteContainer />
+    <div>========================= 使用 context 传递数据=====================</div>
+    <VoteContextContainer />
   </Fragment>
 );
 
