@@ -332,3 +332,58 @@
 
 1. 通过props
 2. 通过context
+
+### 10.React 组件样式问题
+
+**React会有样式冲突的问题。通过一些方案，可以解决这个问题。**
+
+1. 内联样式：直接在jsx中，写行内CSS。但是不利于复用和维护
+2. 基于样式表、样式类名的方式。需要人为的、有规范的去规避样式冲突问题。
+   1. 保证每个组件，最外层的样式类名不冲突：命名为：路径+组建名 作为外层容器的名字！
+   2. 再使用sass、less等，将子组件的css写到外层容器的class下
+3. CSS Module
+   1. 创建 xxxx.module.css 文件
+   2. 引入该文件至对应的组件中。这也所有的样式就是一个对象，并且有unique的className.
+4. ReactJSS
+   1.  基于react-jss包，npm install
+   2. ```const useStyles = createUseStyles({box:{...},test:{...}})``` ---- 类似于 React-Native
+
+### 11.React HOC 高阶组件 （Important）
+
+1. 概念
+
+### 12.Redux
+
+1. 基本代码逻辑
+
+   ```javascript
+   // 1. 创建公共容器: 公共状态 和 事件池(方法)
+   const store = createStore([reducer]);
+   
+   // 2. 在组件内部，获取公共状态，然后渲染
+   store.getState() 
+   
+   // 3. 把让组件可以更新的方法，放在公共容器的事件池中！
+   store.subscribe(aMethod);
+   
+   // 4. 创建容器的时候，传递的  reducer: function
+   let initialState = {...};
+   
+   /**
+   *	@param {object} state
+   *	@param {object} action 派发的行为对象
+   */
+   const reducer = function reducer(state = initialState, action) {
+        switch(action.type) {
+        	// change state based on type..... 
+        }
+       return state;
+   }
+   
+   // 5. 当组件中的事件 触发状态更改的时候
+   store.dispatch({type:"XXXXXX",.....});
+   ```
+
+2. 
+
+3. 
