@@ -352,7 +352,7 @@
 
 1. 概念
 
-### 12.Redux
+### 12.Redux React-Redux
 
 1. 基本代码逻辑
 
@@ -384,6 +384,57 @@
    store.dispatch({type:"XXXXXX",.....});
    ```
 
-2. 
+2. Redux工程化模块化
 
-3. 
+   1. 按照模块，把reducer单独管理每个模块都有自己的reducer；最后把所有reducer进行合并。
+
+   2. 每一次dispatch派发的时候，都会去各个reducer去查找是否有对应的action.type行为标识。这需要 **统一管理**！
+
+      ```javascript
+      /**
+       * 统一管理 action.type 标识
+       */
+      export const VOTE_SUP = "VOTE_SUP";
+      export const VOTE_OPP = "VOTE_OPP";
+      export const PERSON_INFO = "PERSON_INFO";
+      ```
+
+      
+
+   3.  把派发的行为对象，按照模块，进行统一管理  ---  当使用react-redux中，会非常有用！
+
+      ```javascript
+      /**
+       * Voter 模块 派发的行为对象管理
+       */
+      import * as TYPES from '../actionTypes';
+      
+      const voterActions = {
+          support() {
+              return  {
+                  type:TYPES.VOTE_SUP
+              }
+          },
+          oppose() {
+              return {
+                  type:TYPES.VOTE_OPP
+              }
+          }
+      };
+      export default voterActions;
+      ```
+
+      
+
+3. React-Redux的基础应用 --- 让Redux的操作，在react项目中，更简单一些！
+
+   1. 使用 react-redux的 ```<Provider></Provider>```
+
+   2. 使用 connect方法
+
+      ```javascript
+      ```
+
+      
+
+   3. 

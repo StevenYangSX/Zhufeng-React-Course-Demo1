@@ -3,14 +3,14 @@ import ReactDOM from "react-dom/client";
 import "@/index.less";
 import App from "./App";
 import store from "./store/store";
-import Context from "./context/Context";
-console.log("store===>", store);
+import { Provider } from "react-redux";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <div>
-    <Context.Provider value={{ store }}>
+    <Provider store={store}>
       <App />
-    </Context.Provider>
+    </Provider>
   </div>
 );
 

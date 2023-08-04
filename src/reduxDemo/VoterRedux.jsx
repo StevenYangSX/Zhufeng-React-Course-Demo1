@@ -1,25 +1,23 @@
-import React, { useContext, useState, useEffect } from "react";
-import Context from "../context/Context";
+import React from "react";
+import { connect } from "react-redux";
 import VoterInfo from "./VoterInfo";
 import VoterButton from "./VoterButton";
-const VoterRedux = () => {
-  const { store } = useContext(Context);
+const VoterRedux = (props) => {
+  // const { store } = useContext(Context);
+  let { supNum, oppNum } = props;
+  console.log("check react-redux....", props);
+  // // 获取store中的公共状态
+  // let { supNum, oppNum } = store.getState().voter;
 
-  // 获取store中的公共状态
-  let { supNum, oppNum } = store.getState();
+  // // 组件第一次渲染完成后  把让组件更新的方法 放在STORE的事件池中
+  // let [num, setNum] = useState(0);
+  // const update = () => {
+  //   setNum(num + 1);
+  // };
 
-  // 组件第一次渲染完成后  把让组件更新的方法 放在STORE的事件池中
-  let [num, setNum] = useState(0);
-  const update = () => {
-    setNum(num + 1);
-  };
-
-  useEffect(() => {
-    let unsubscribe = store.subscribe(update);
-    // return () => {
-    //   unsubscribe();
-    // };
-  }, [supNum, oppNum]);
+  // useEffect(() => {
+  //   let unsubscribe = store.subscribe(update);
+  // }, [supNum, oppNum]);
 
   return (
     <div>
@@ -33,4 +31,8 @@ const VoterRedux = () => {
   );
 };
 
-export default VoterRedux;
+export default connect((state) => state.voter)(VoterRedux);
+/**
+ * connect(mapStateToProps, mapDispatchToProps) (我们要渲染的组件)
+ * 1. mapStateToProps 可以获取到redux中的公共状态 把需要的信息 当作props
+ */

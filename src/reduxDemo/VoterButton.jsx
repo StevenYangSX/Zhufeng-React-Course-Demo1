@@ -1,30 +1,38 @@
-import React, { useContext } from "react";
-import Context from "../context/Context";
+import React from "react";
+import { connect } from "react-redux";
 
-const VoterButton = () => {
-  const { store } = useContext(Context);
+import action from "../store/actions";
+const VoterButton = (props) => {
+  console.log("dispatch to props...", props);
+  let { support, oppose } = props;
+
+  const handleSupport = () => {
+    let payload = { name: "steven", age: 19 };
+    console.log("BUtton clicked....", payload);
+    support(payload);
+  };
+
   return (
     <div>
-      <button
-        onClick={() => {
-          store.dispatch({
-            type: "VOTE_SUP",
-          });
-        }}
-      >
-        支持
-      </button>
-      <button
-        onClick={() => {
-          store.dispatch({
-            type: "VOTE_OPP",
-          });
-        }}
-      >
-        反对
-      </button>
+      <button onClick={handleSupport}>支持</button>
+      <button onClick={oppose}>反对</button>
     </div>
   );
 };
 
-export default VoterButton;
+// 标准语法
+// export default connect(
+//   (state) => state.voter,
+//   (dispatch) => {
+//     return {
+//       support() {
+//         dispatch(action.voter.support());
+//       },
+//       oppose() {
+//         dispatch(action.voter.oppose());
+//       },
+//     };
+//   }
+// )(VoterButton);
+
+export default connect((state) => state.voter, action.voter)(VoterButton);

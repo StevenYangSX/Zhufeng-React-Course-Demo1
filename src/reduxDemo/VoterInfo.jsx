@@ -1,21 +1,8 @@
-import React, { useContext, useState, useEffect } from "react";
-import Context from "../context/Context";
-const VoterInfo = () => {
-  const { store } = useContext(Context);
+import React from "react";
+import { connect } from "react-redux";
 
-  // 获取store中的公共状态
-  let { supNum, oppNum } = store.getState();
-
-  // 组件第一次渲染完成后  把让组件更新的方法 放在STORE的事件池中
-  let [num2, setNum2] = useState(0);
-  const update2 = () => {
-    setNum2(num2 + 1);
-  };
-
-  useEffect(() => {
-    let unsubscribe = store.subscribe(update2);
-  }, []);
-
+const VoterInfo = (props) => {
+  let { supNum, oppNum } = props;
   return (
     <div>
       <div>支持人数:{supNum}</div>
@@ -25,4 +12,4 @@ const VoterInfo = () => {
   );
 };
 
-export default VoterInfo;
+export default connect((state) => state.voter)(VoterInfo);
