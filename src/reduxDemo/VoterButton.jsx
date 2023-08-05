@@ -1,21 +1,29 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  getAllTaskListAsync,
+  voteSup,
+  getAllTaskList,
+} from "../storeWithReduxToolkit/features/voterSlice";
 
-import action from "../store/actions";
 const VoterButton = (props) => {
-  console.log("dispatch to props...", props);
-  let { support, oppose } = props;
+  // let { support, oppose } = props;
+  let { oppNum, supNum, taskList } = useSelector((state) => state.voter);
+  let dispatch = useDispatch();
 
   const handleSupport = () => {
     let payload = { name: "steven", age: 19 };
-    console.log("BUtton clicked....", payload);
-    support(payload);
+    console.log("BUtton clicked....", voteSup());
+    dispatch(voteSup(payload));
   };
 
+  useEffect(() => {
+    dispatch(getAllTaskListAsync());
+  }, []);
   return (
     <div>
       <button onClick={handleSupport}>支持</button>
-      <button onClick={oppose}>反对</button>
+      <button onClick={handleSupport}>反对</button>
     </div>
   );
 };
@@ -35,4 +43,5 @@ const VoterButton = (props) => {
 //   }
 // )(VoterButton);
 
-export default connect((state) => state.voter, action.voter)(VoterButton);
+// export default connect((state) => state.voter, action.voter)(VoterButton);
+export default VoterButton;
