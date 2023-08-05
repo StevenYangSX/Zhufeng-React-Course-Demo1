@@ -437,4 +437,14 @@
 
       
 
-   3. 
+### 13. Redux-toolkit的应用
+
+1. 基于切片机制，把reducer和actionCreator混合在一起了！
+
+2. 代码流程
+
+   ```javascript
+    
+   ```
+
+   
