@@ -5,7 +5,6 @@ React 高阶组件 ： 利用JS中的闭包   柯理化函数    实现的组件
 import React from "react";
 
 const HighOrderComponent = (props) => {
-  console.log("Demo 中的props ==>", props);
   return <div>HighOrderComponent</div>;
 };
 

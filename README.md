@@ -448,8 +448,89 @@
    ```
 
 
-### 14. React 路由 react-router-dom
+### 14. React 路由 react-router-dom version 5
 
 1. 哈希（hash）路由：每一次路由跳转，都是改变页面的hash的值。并且监听hashchange事件，渲染不同的内容。
+
 2. 浏览器（History）路由：利用H5中的HistoryAPI来实现页面地址的切换，不刷新页面。
+
 3. 最基本的一级、二级路由实现
+
+4. 实现路由表管理机制```<RouterView/>```
+
+5. 路由懒加载
+
+6. 在组件中获取路有对象信息。
+
+   ```javascript
+   let history = useHistory();
+   let location = useLocation();
+   let match = useRouteMatch();
+   ```
+
+7. 路由跳转和传参方案
+8. Nav和NavLink的区别
+   1. NavLink会给当前选中的 增加一个 active 样式类名
+
+### 14. React 路由 react-router-dom version 6
+
+1. 语法变化
+
+   ```jsx
+   // 移除了 <Swtich> 
+   // <Redirect/>   ------------->    <Navigate>
+   // withRouter    ------------->    需要自己实现
+   <Routes>
+       <Navigate to="/a" />
+       <Route path="/a" element={ <SomeCoponent/> } />
+   </Routes>
+   ```
+
+2.   解释说明
+
+   1. Route中不需要 exact，默认每一项都是精准匹配
+   2. v6版本中，所有的路由（二级或者多级），不再分散到各个组件中，而是统一写在一起进行处理！
+   3. ```<Outlet/>```使用于二级、多级路由下，路由容器。用来渲染二级、多级路由匹配的内容。
+
+3. V6的路由表管理机制
+
+   ```javascript
+   // react-router v6 路由表
+   
+   import A from './views/A';
+   import {lazy} from 'react';
+   const routes = [
+       {
+           path:'/',
+           component: () => <Navigate to="/a" />,
+       },
+       {
+           path:"/a",
+           component: A,
+           meta: {},
+           children:[]
+       },
+       {
+           path:"/b",
+           component: lazy(() => import("./views/B") ),  //懒加载
+           meta: {},
+           children:[]
+       },
+       {
+           path:"/c",
+           component: lazy(() => import("./views/C") ),  //懒加载
+           meta: {},
+           children:[]
+       },
+       {
+           path:"/*",
+           component: () => {
+               return <Navigate to = {{  pathname: '/a',search: '?from=404' }} />
+           }
+       }
+   ];
+   
+   export default routes;
+   ```
+
+   

@@ -16,7 +16,7 @@ const store = configureStore({
     reducer,
     
     // 使用中间件
-    middleware:[reduxLogger, reduxThunk]
+  
 })
 
 export default store;

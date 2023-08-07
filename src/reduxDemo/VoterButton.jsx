@@ -13,7 +13,7 @@ const VoterButton = (props) => {
 
   const handleSupport = () => {
     let payload = { name: "steven", age: 19 };
-    console.log("BUtton clicked....", voteSup());
+
     dispatch(voteSup(payload));
   };
 

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import A1 from "./a/A1";
 import A2 from "./a/A2";
 import A3 from "./a/A3";
+import { useHistory, useLocation, useRouteMatch } from "react-router-dom/cjs/react-router-dom.min";
 const ABox = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -16,7 +17,11 @@ const ABox = styled.div`
     }
   }
 `;
-const A = () => {
+const A = (props) => {
+  let history = useHistory();
+  let location = useLocation();
+  let match = useRouteMatch();
+
   return (
     <ABox>
       <div className="menu">

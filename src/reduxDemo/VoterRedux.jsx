@@ -5,7 +5,6 @@ import VoterButton from "./VoterButton";
 const VoterRedux = (props) => {
   // const { store } = useContext(Context);
   let { supNum, oppNum } = props;
-  console.log("check react-redux....", props);
   // // 获取store中的公共状态
   // let { supNum, oppNum } = store.getState().voter;
 

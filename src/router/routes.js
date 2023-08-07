@@ -11,9 +11,10 @@
  *      + children:[] 子路由
  */
 
+import { lazy } from "react";
 import A from "../pages/react-router-dom-v5/A";
-import B from "../pages/react-router-dom-v5/B";
-import C from "../pages/react-router-dom-v5/C";
+//import B from "../pages/react-router-dom-v5/B";
+//import C from "../pages/react-router-dom-v5/C";
 
 const routes = [
   {
@@ -31,13 +32,15 @@ const routes = [
   },
   {
     path: "/b",
-    component: B,
+    //  路由懒加载
+    component: lazy(() => import("../pages/react-router-dom-v5/B")),
     name: "B",
     meta: {},
   },
   {
     path: "/c",
-    component: C,
+    //  路由懒加载
+    component: lazy(() => import("../pages/react-router-dom-v5/C")),
     name: "C",
     meta: {},
   },
