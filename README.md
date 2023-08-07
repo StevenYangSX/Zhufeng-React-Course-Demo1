@@ -447,4 +447,9 @@
     
    ```
 
-   
+
+### 14. React 路由 react-router-dom
+
+1. 哈希（hash）路由：每一次路由跳转，都是改变页面的hash的值。并且监听hashchange事件，渲染不同的内容。
+2. 浏览器（History）路由：利用H5中的HistoryAPI来实现页面地址的切换，不刷新页面。
+3. 最基本的一级、二级路由实现
